@@ -38,7 +38,6 @@ authrouter.post('/user/login',async (req,res)=>{
     const isSuccess = await bcrypt.compare(password,user.password);
     if(isSuccess){
         let token = jsonwebtoken.sign({_id:user._id},'SECREATKEY@(12#)', {expiresIn:'1h'});
-        console.log(token);
         res.cookie('token',token)
         res.status(200).send('User login successfully');
     }else{

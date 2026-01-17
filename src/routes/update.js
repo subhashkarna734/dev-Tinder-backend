@@ -29,7 +29,6 @@ updateRouter.put('/update/updataData',auth, async(req,res)=>{
 updateRouter.patch('/update/update',async(req,res)=>{
  try{
     const userId = req.user;
-    console.log(userId);
     await User.findByIdAndUpdate(userId,{firstName:'Ravindra singh'});
     res.status(200).send('user updated successfully')
     }catch(err){
