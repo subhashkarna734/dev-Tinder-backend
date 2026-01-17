@@ -50,6 +50,7 @@ authrouter.post('/user/login',async (req,res)=>{
   }
 })
 
+//===============Logout======================//
 authrouter.post('/user/logout',(req,res)=>{
     res.cookie('token',null,{expires:new Date(Date.now())});
     res.send('user has logged out');    
