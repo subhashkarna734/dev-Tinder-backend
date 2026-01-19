@@ -7,7 +7,8 @@ const userSchema = mongoose.Schema({
         type: String,
         required:true,
         lowercase: true,
-        trim: true
+        trim: true,
+        index:true
     },
     lastName:{
         type: String,
@@ -16,9 +17,14 @@ const userSchema = mongoose.Schema({
     },
     age:{
         type:Number,
+       
     },
     gender:{
         type:String,
+        enum:{
+            values : ['Male', 'Female', 'Others'],
+            message: `{VALUE} is not the valid gender type.`
+        }
     },
     emailId:{
         type: String,
@@ -34,6 +40,13 @@ const userSchema = mongoose.Schema({
     password:{
         type: String,
         required:true
+    },
+    photoUrl:{
+        type: String,
+        default:"https://www.mjunction.in/wp-content/uploads/2020/09/Dummy.jpg",
+        validat(value){
+            if(!validator.isURL(value)){throw new Error('Invalid Photo url: ' +value)}
+        }
     }
     
 },{
